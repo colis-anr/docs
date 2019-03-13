@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="CST.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="CST" rel="Chapter" href="CST.html">
+<link title="API" rel="Chapter" href="API.html"><link title="Parsing shell scripts" rel="Section" href="#1_Parsingshellscripts">
+<link title="Serialization of CST" rel="Section" href="#1_SerializationofCST">
+<link title="CST helpers" rel="Section" href="#1_CSThelpers">
+<link title="POSIX related helpers" rel="Section" href="#1_POSIXrelatedhelpers">
+<title>API</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="CST.html" title="CST">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_API.html">API</a></h1>
+
+<pre><span id="MODULEAPI"><span class="keyword">module</span> API</span>: <code class="code">sig</code> <a href="API.html">..</a> <code class="code">end</code></pre><div class="info module top">
+<div class="info-desc">
+<p>This interface defines the API of libmorbig</p>
+</div>
+</div>
+<hr width="100%">
+<h2 id="1_Parsingshellscripts">Parsing shell scripts</h2>
+<pre><span id="VALparse_file"><span class="keyword">val</span> parse_file</span> : <code class="type">string -> <a href="CST.html#TYPEprogram">CST.program</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">parse_file filename</code> performs the syntactic analysis of
+   <code class="code">filename</code> and returns a concrete syntax tree if <code class="code">filename</code> content
+   is syntactically correct.
+   Raise  or  otherwise.</p>
+</div>
+</div>
+
+<pre><span id="VALparse_string"><span class="keyword">val</span> parse_string</span> : <code class="type">string -> string -> <a href="CST.html#TYPEprogram">CST.program</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">parse_string filename content</code> is similar to <code class="code">parse_file</code> except the
+    script source code is provided as a string.</p>
+</div>
+</div>
+
+<pre><span id="MODULEErrors"><span class="keyword">module</span> <a href="API.Errors.html">Errors</a></span>: <code class="code">sig</code> <a href="API.Errors.html">..</a> <code class="code">end</code></pre><div class="info">
+<p>Errors</p>
+
+</div>
+<h2 id="1_SerializationofCST">Serialization of CST</h2>
+<pre><span id="VALload_binary_cst"><span class="keyword">val</span> load_binary_cst</span> : <code class="type">Pervasives.in_channel -> <a href="CST.html#TYPEprogram">CST.program</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">load_binary_cst cin</code> retrieves a serialized CST from
+    input_channel <code class="code">cin</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALsave_binary_cst"><span class="keyword">val</span> save_binary_cst</span> : <code class="type">Pervasives.out_channel -> <a href="CST.html#TYPEprogram">CST.program</a> -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">save_binary_cst cout cst</code> stores a serialized <code class="code">cst</code> in <code class="code">cout</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALload_json_cst"><span class="keyword">val</span> load_json_cst</span> : <code class="type">Pervasives.in_channel -> <a href="CST.html#TYPEprogram">CST.program</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">load_json_cst cin</code> retrieves a CST in JSON format from
+   input_channel <code class="code">cin</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALsave_json_cst"><span class="keyword">val</span> save_json_cst</span> : <code class="type">Pervasives.out_channel -> <a href="CST.html#TYPEprogram">CST.program</a> -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">save_json_cst cout cst</code> stores a <code class="code">cst</code> using JSON format in <code class="code">cout</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALsave_dot_cst"><span class="keyword">val</span> save_dot_cst</span> : <code class="type">Pervasives.out_channel -> <a href="CST.html#TYPEprogram">CST.program</a> -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">save_dot_cst cout cst</code> stores a <code class="code">cst</code> using DOT format in <code class="code">cout</code>.</p>
+</div>
+</div>
+<h2 id="1_CSThelpers">CST helpers</h2>
+<pre><span id="VALon_located"><span class="keyword">val</span> on_located</span> : <code class="type">('a -> 'b) -> 'a <a href="CST.html#TYPElocated">CST.located</a> -> 'b</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">on_located f</code> applies <code class="code">f</code> on a located value, preserving its location.</p>
+</div>
+</div>
+
+<pre><span id="VALstart_of_position"><span class="keyword">val</span> start_of_position</span> : <code class="type"><a href="CST.html#TYPEposition">CST.position</a> -> Lexing.position</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">start_of_position p</code> returns the beginning of a position <code class="code">p</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALend_of_position"><span class="keyword">val</span> end_of_position</span> : <code class="type"><a href="CST.html#TYPEposition">CST.position</a> -> Lexing.position</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">end_of_position p</code> returns the end of a position <code class="code">p</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALfilename_of_position"><span class="keyword">val</span> filename_of_position</span> : <code class="type"><a href="CST.html#TYPEposition">CST.position</a> -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">filename_of_position p</code> returns the filename of a position <code class="code">p</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALstring_of_lexing_position"><span class="keyword">val</span> string_of_lexing_position</span> : <code class="type">Lexing.position -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">string_of_lexing_position p</code> returns a human-readable
+    representation of the lexing position <code class="code">p</code>, using a format
+    recognized by Emacs, and other decent editors.</p>
+</div>
+</div>
+<h2 id="1_POSIXrelatedhelpers">POSIX related helpers</h2>
+<pre><span id="VALremove_quotes"><span class="keyword">val</span> remove_quotes</span> : <code class="type">string -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">remove_quotes s</code> yields a copy of string <code class="code">s</code>, with all
+   quotes removed as described in the POSIX specification.</p>
+</div>
+</div>
+</body></html>
